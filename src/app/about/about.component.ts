@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 
 @Component({
@@ -10,12 +10,32 @@ import { first } from 'rxjs';
 export class AboutComponent {
 
   contactForm = new FormGroup({
-firstName: new FormControl(),
-lastName:new FormControl(),
-email:new FormControl(),
-password:new FormControl(),
-confirmPassword:new FormControl(),
-mobile:new FormControl()
+firstName: new FormControl("",[
+  Validators.required,
+  Validators.minLength(5)
+]),
+lastName:new FormControl("",[
+  Validators.required,
+  Validators.minLength(5)
+]),
+email:new FormControl("",
+  [Validators.required,
+    Validators.email
+  ]
+),
+password:new FormControl("",[
+  Validators.required,
+  Validators.minLength(6)
+]),
+confirmPassword:new FormControl("",[
+  Validators.required,
+  Validators.minLength(6)
+]),
+mobile:new FormControl("",
+  [
+    Validators.required
+  ]
+)
   })
 
   onSubmit(){
