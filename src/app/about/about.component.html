@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Reactive Form</h2>
+    <form [formGroup]="contactForm" (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" class="form-control" formControlName="firstName">
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" class="form-control" formControlName="lastName">
+        </div>
+        <div>
+            <label for="email">email:</label>
+        <input type="email" id="email" name="email" class="form-control" formControlName="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+        <input type="text" id="password" name="password" class="form-control" formControlName="password">
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+        <input type="text" id="confirmPassword" name="confirmPassword" class="form-control" formControlName="confirmPassword">
+        </div>
+        <div>
+            <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" name="mobile" class="form-control" formControlName="mobile">
+        </div>
+        <button>Submit</button>
+    </form>
+</div>

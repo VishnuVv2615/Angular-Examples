@@ -1,0 +1,70 @@
+<div class="container">
+    <h2>Template driven Form</h2>
+    <form #Register="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name :</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model.name" required>
+            <div *ngIf="Register.controls.name?.touched && Register.controls.name?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.name?.errors?.required">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Id:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" required email>
+            <div *ngIf="Register.controls.email?.touched && Register.controls.email?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.email?.errors?.required">Email is required</div>
+                <div *ngIf="Register.controls.email?.errors?.email">Invalid email format</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="model.password"
+                required minlength="6">
+            <div *ngIf="Register.controls.password?.touched && Register.controls.password?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.password?.errors?.required">Password is required</div>
+                <div *ngIf="Register.controls.password?.errors?.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="confirmpass">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmpass" name="confirmpass"
+                [(ngModel)]="model.confirmpass" required>
+            <div *ngIf="Register.controls.confirmpass?.touched && Register.controls.confirmpass?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.confirmpass?.errors?.required">Confirm Password is required</div>
+                <div *ngIf="Register.submitted && model.confirmpass !== model.password">Passwords do not match</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile:</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="model.mobile" required>
+            <div *ngIf="Register.controls.mobile?.touched && Register.controls.mobile?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.mobile?.errors?.required">Mobile is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input type="radio" class="mx-lg-1" id="gender" name="gender" value="male" [(ngModel)]="model.gender"
+                required>Male
+            <input type="radio" class="mx-lg-1" id="gender1" name="gender" value="female" [(ngModel)]="model.gender"
+                required>Female
+            <div *ngIf="Register.controls.gender?.touched && Register.controls.gender?.invalid" class="text-danger">
+                <div *ngIf="Register.controls.gender?.errors?.required">Gender is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="isMarried">Married :</label>
+            <input type="checkbox" class="mx-md-1" id="isMarried" name="isMarried" [(ngModel)]="model.isMarried"
+                (change)="model.isNotMarried = !model.isMarried" [checked]="model.isMarried">Yes
+            <input type="checkbox" class="mx-md-1" id="isNotMarried" name="isNotMarried"
+                [(ngModel)]="model.isNotMarried" (change)="model.isMarried = !model.isNotMarried"
+                [checked]="model.isNotMarried">No
+            <div *ngIf="(Register.controls.isMarried?.touched || Register.controls.isNotMarried?.touched) && (Register.controls.isMarried?.invalid || Register.controls.isNotMarried?.invalid)"
+                class="text-danger">
+                <div
+                    *ngIf="Register.controls.isMarried?.errors?.required || Register.controls.isNotMarried?.errors?.required">
+                    Marital status is required</div>
+            </div>
+        </div>
+        <button class="btn btn-primary mt-2" type="submit" [disabled]="Register.invalid ||model.password!== model.confirmpass">Submit</button>
+    </form>
+</div>
