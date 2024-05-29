@@ -1,1 +1,15 @@
-<p>contact works!</p>
+<div>
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+           <td>{{product.data.color}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
